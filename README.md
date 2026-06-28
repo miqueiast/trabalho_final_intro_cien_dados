@@ -1,208 +1,244 @@
-# 🛒 Projeto Final ML - Predição de Vendas
+# 🛒 Projeto Final - Previsão de Vendas em Supermercado
 
-Opa, e aí galera! Tudo certo?
-
-Então, eu tô aqui pra explicar esse projeto que fiz. Basicamente, eu criei um programa que **preve quanto uma pessoa vai gastar** em um supermercado. Parece complicado? Mas na real é mais simples do que parece.
-
----
-
-## 📖 Como é que Funciona?
-
-Então, saca só: a gente tem um monte de dados históricos de vendas de supermercado, né. Com essas informações (quantos itens comprou, que tipo de produto é, qual avaliação deu, etc), o computador aprende a encontrar padrões.
-
-Aí quando vem um cliente novo, você bota os dados dele no programa e ele fala: "ó, baseado no que aprendi, esse cliente vai gastar assim-assim".
-
-É tipo quando você já viu tantas coisas iguais que você consegue adivinhar o próximo resultado, tá ligado?
+**Aluno:** Miqueias Teixeira  
+**Disciplina:** INTRODUÇÃO A CIÊNCIA DE DADOS (EAD)
 
 ---
 
-## 🏗️ A Estrutura do Projeto
+## Descrição do Projeto
 
-Basicamente tem 3 coisas acontecendo:
+Este projeto desenvolvido uma solução de Machine Learning para prever o valor total de vendas em um supermercado. O objetivo é criar um modelo que, baseado em características da compra (quantidade de itens, tipo de produto, avaliação do cliente, etc), consiga fazer previsões precisas sobre o valor final.
 
-**1. O Notebook** - Onde a gente pega os dados, limpa, faz uns gráficos pra entender melhor, e depois treina o modelo. É o lugar onde o "aprendizado" acontece mesmo.
+O projeto é estruturado em três componentes principais:
 
-**2. O Modelo** - Depois que treina, a gente salva tudo em dois arquivos (`.pkl`). É tipo quando você estuda e coloca tudo na cabeça pra depois não esquecer.
-
-**3. O App** - Aí vem a parte legal: criei um programinha com uns botões bonitinhos usando Streamlit. Você preenche os dados e ele mostra a previsão. Fica bem user-friendly mesmo.
-
----
-
-## 📊 Os Dados
-
-Os dados vêm desse dataset aí: https://www.kaggle.com/datasets/markmedhat/supermarket-sales
-
-Tem:
-- Quantidade de itens
-- Preço unitário
-- Tipo de produto (eletrônico, moda, alimento, etc)
-- Avaliação do cliente
-- Data da compra
-- Forma de pagamento (dinheiro, cartão, e-wallet)
-- E a gente quer prever: **o valor total da compra**
-
-Simples assim.
+1. **Análise e Treinamento (Notebook)** - Processamento de dados e desenvolvimento do modelo
+2. **Modelo Treinado** - Arquivo contendo o modelo salvo para reutilização
+3. **Interface de Usuário (Streamlit)** - Aplicação para fazer previsões
 
 ---
 
-## 🚀 Como Colocar pra Funcionar
+## Dataset
 
-### Passo 1: Instalar as coisas
+O dataset utilizado é o "Supermarket Sales", disponível na plataforma Kaggle:
+https://www.kaggle.com/datasets/markmedhat/supermarket-sales
 
-Abre o terminal e manda:
+**Características do Dataset:**
+- Total de registros: 1.000 vendas
+- Variáveis disponíveis: Quantidade de itens, preço unitário, tipo de produto, forma de pagamento, data, avaliação do cliente
+- Variável alvo: Valor total da venda
+
+---
+
+## Requisitos e Instalação
+
+### Dependências
+
+Certifique-se de ter Python 3.8 ou superior instalado. Instale as bibliotecas necessárias executando:
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn streamlit
 ```
 
-Pronto. Essas são as bibliotecas que a gente usa pro projeto.
+As bibliotecas utilizadas são:
+- **pandas**: Manipulação e análise de dados
+- **numpy**: Operações numéricas
+- **matplotlib e seaborn**: Visualização de dados
+- **scikit-learn**: Modelos de Machine Learning
+- **streamlit**: Framework para construção da interface
 
 ---
 
-### Passo 2: Pegar o Dataset
-
-Vai lá no Kaggle, baixa o arquivo `supermarket_sales.csv` e coloca em uma pasta chamada `dados` dentro do seu projeto.
-
-Fica assim:
+## Estrutura do Projeto
 
 ```
-seu_projeto/
-├── notebook.ipynb
-├── app.py
-├── README.md (esse arquivo)
+projeto/
+├── notebook.ipynb                 # Análise e treinamento do modelo
+├── app.py                         # Aplicação Streamlit
+├── README.md                      # Este arquivo
 └── dados/
-    └── supermarket_sales.csv
+    ├── supermarket_sales.csv      # Dataset (download necessário)
+    ├── modelo_venda.pkl           # Modelo treinado (gerado)
+    └── colunas_modelo.pkl         # Metadados das colunas (gerado)
 ```
 
 ---
 
-### Passo 3: Rodar o Notebook
+## Como Executar
 
-Abre o Jupyter (ou Colab se preferir) e executa o notebook:
+### Passo 1: Preparação dos Dados
+
+1. Faça o download do arquivo `supermarket_sales.csv` no Kaggle
+2. Crie uma pasta chamada `dados` no diretório do projeto
+3. Coloque o arquivo CSV dentro desta pasta
+
+### Passo 2: Treinar o Modelo
+
+Abra o notebook em Jupyter ou Google Colab:
 
 ```bash
 jupyter notebook notebook.ipynb
 ```
 
-Basicamente você roda tudo de cima a baixo (`Ctrl+A` e `Shift+Enter`). Isso vai:
-- Carregar os dados
-- Fazer umas análises e gráficos
-- Treinar dois modelos diferentes
-- Salvar o melhor modelo em um arquivo
+Execute todas as células do notebook (Ctrl+A, depois Shift+Enter). Este processo:
+- Carrega e explora os dados
+- Realiza limpeza e transformação de variáveis
+- Treina dois modelos diferentes (Random Forest e Regressão Linear)
+- Avalia o desempenho de cada modelo
+- Salva o melhor modelo em arquivos (.pkl)
 
-Quando terminar, aparece uma mensagem verde tipo: `✅ Tá pronto pro Streamlit!`
+Quando o processo terminar, você verá a mensagem: `✅ Modelo treinado com sucesso!`
 
----
+### Passo 3: Executar a Aplicação
 
-### Passo 4: Rodar o App
-
-Abre o terminal na pasta do projeto e manda:
+Abra o terminal no diretório do projeto e execute:
 
 ```bash
 streamlit run app.py
 ```
 
-Aí abre uma janela no navegador com a interface. Bem daora mesmo.
+A aplicação será aberta automaticamente no navegador em `http://localhost:8501`
 
 ---
 
-## 🎮 Usando o Programa
+## Utilizando a Aplicação
 
-Quando abre, tem dois painéis:
+A interface está dividida em dois painéis:
 
-**Esquerda:**
-- Escolher quantos itens
-- Digitar o preço unitário
-- Slider pra nota (0-10)
+**Painel Esquerdo - Informações da Compra:**
+- Quantidade de itens (seletor de 1 a 10)
+- Preço unitário em R$ (campo numérico)
+- Avaliação da compra (escala de 0 a 10)
 
-**Direita:**
-- Tipo de produto (dropdown)
-- Forma de pagamento
-- Qual filial
-- Data da compra
+**Painel Direito - Características da Transação:**
+- Linha de produto (dropdown com 6 opções)
+- Forma de pagamento (dinheiro, cartão, e-wallet)
+- Filial (A, B ou C)
+- Data da compra (calendário)
 
-Depois você clica em "🔮 Fazer Previsão" e o programa mostra quanto ele acha que vai custar. Mostra também a previsão, o preço médio por item e um resuminho do que você colocou.
-
----
-
-## 🔧 Se der Ruim
-
-### "Arquivo não encontrado"
-Ó, você não botou o `supermarket_sales.csv` na pasta `dados`. Bota aí que funciona.
-
-### "Coluna faltando" ou "Erro na previsão"
-Roda o notebook novamente pra regenerar os arquivos do modelo. Aí tenta rodar o app de novo.
-
-### Aparece umas mensagens estranhas em amarelo
-Ó, é só aviso mesmo. O programa funciona normal. Não se preocupa.
+Após preencher os dados, clique no botão "🔮 Fazer Previsão" para obter o resultado. A aplicação exibirá:
+- O valor total previsto
+- O preço médio por item
+- Um resumo dos dados inseridos
+- Observações importantes sobre a precisão
 
 ---
 
-## 📚 O Que Tem no Código
+## Tratamento de Erros
 
-Se você quiser entender como funciona:
+### Erro: "Arquivo não encontrado"
+**Causa:** O arquivo `supermarket_sales.csv` não está na pasta `dados/`  
+**Solução:** Verifique se o arquivo está no local correto e com o nome exato.
 
-1. **Exploração dos dados** - Vejo o tamanho do dataset, que colunas tem, estatísticas
-2. **Limpeza** - Tiro dados que não servem, converto categorias em números, extraio features úteis
-3. **Visualização** - Faz uns gráficos pra entender os padrões
-4. **Treinamento** - Treina um RandomForest e uma Regressão Linear
-5. **Avaliação** - Calcula R², MAE, RMSE pra ver qual modelo é melhor
-6. **Salvamento** - Salva o modelo em arquivo pra usar no app depois
+### Erro: "Coluna faltante" ou erro na previsão
+**Causa:** Os arquivos do modelo (.pkl) estão desatualizados  
+**Solução:** Execute novamente o notebook completo para regenerar os arquivos, depois reinicie a aplicação.
 
-Tem comentários em tudo, então dá pra entender o que cada coisa faz.
-
----
-
-## 🔍 O Que Descobri
-
-Fazendo esse projeto, algumas coisas que aprendi:
-
-- Que a quantidade de itens é a coisa mais importante pra prever o preço (faz total sentido né)
-- Que é bem mais fácil processar dados quando você tira as colunas que não servem
-- Que RandomForest é bem melhor que regressão linear pra esse tipo de problema
-- Como transformar um modelo em um programa que outras pessoas conseguem usar
-- Como lidar com erro de compatibilidade de colunas (que foi meio chato de resolver, ngl)
+### Aviso do scikit-learn
+**Causa:** Incompatibilidade de versão entre scikit-learn  
+**Solução:** Este é apenas um aviso e não afeta o funcionamento da aplicação. Funciona normalmente.
 
 ---
 
-## 💡 Por Que Isso Importa?
+## Metodologia
 
-Empresas reais usam isso pra:
-- Saber quanto de produto eles vão vender por mês
-- Planejar quanto de dinheiro vai ter
-- Entender quando é melhor vender certos produtos
-- Tomar decisões melhores sobre estoque
+### Análise Exploratória
 
-Então não é só uma coisa aleatória, é algo que funciona de verdade.
+O notebook contém uma análise inicial dos dados para compreender:
+- Distribuição das variáveis
+- Presença de valores faltantes
+- Correlações entre variáveis
+- Padrões visuais nos dados
 
----
+### Preparação dos Dados
 
-## ✨ Coisas que Queria Ter Feito
+Os dados passam por transformações necessárias:
+- Conversão de datas para extração de features temporais (mês, dia da semana, trimestre)
+- Codificação de variáveis categóricas
+- Aplicação de one-hot encoding para variáveis nominais
+- Remoção de colunas desnecessárias
 
-Se tivesse mais tempo (ou menos coisa pra fazer):
-- Adicionar mais inputs no app (tipo gênero do cliente)
-- Mostrar gráficos de feature importance dentro do app
-- Colocar isso na internet de graça (HuggingFace Spaces)
-- Comparar os modelos em tempo real
+### Treinamento
 
-Mas já tá bom assim, o importante é que funciona!
+Dois modelos são treinados e comparados:
 
----
+1. **Random Forest** - Modelo de conjunto que captura padrões complexos
+2. **Regressão Linear** - Modelo mais simples para comparação
 
-## 📋 Resumão
+### Avaliação
 
-Essencialmente, é assim:
-- Pego dados reais de supermercado
-- Ensino o computador a reconhecer padrões
-- Crio um programa pra usar o modelo
-- Resultado: você bota uns dados e ele prevê quanto vai custar
-
-E tudo tá bem documentado e comentado, então dá pra entender como funciona.
+O desempenho é avaliado usando as seguintes métricas:
+- **R²** (Coeficiente de Determinação) - Proporção da variância explicada
+- **MAE** (Mean Absolute Error) - Erro médio absoluto em reais
+- **RMSE** (Root Mean Squared Error) - Raiz do erro quadrático médio
 
 ---
 
-É isso aí! Se ficar com dúvida em algo específico do código, lê os comentários que tá tudo explicado. E se der algum erro, acompanha a seção de troubleshooting aí em cima.
+## Estrutura do Notebook
 
-Qualquer coisa, é só chamar!
+O notebook está organizado nas seguintes seções:
 
-Abs 🚀
+1. **Importações** - Bibliotecas necessárias
+2. **Carregamento dos Dados** - Leitura do CSV
+3. **Exploração Inicial** - Análise exploratória dos dados
+4. **Limpeza de Dados** - Tratamento de valores ausentes e conversões
+5. **Visualizações** - Gráficos para compreensão dos padrões
+6. **Preparação para Modelagem** - Feature engineering e split train/test
+7. **Treinamento dos Modelos** - Desenvolvimento de RandomForest e Regressão Linear
+8. **Avaliação** - Comparação de desempenho
+9. **Salvamento** - Armazenamento dos modelos em arquivos
+
+Cada seção contém comentários explicativos sobre as operações realizadas.
+
+---
+
+## Aplicação Streamlit
+
+O arquivo `app.py` implementa a interface de usuário e realiza as seguintes operações:
+
+1. **Carregamento do Modelo** - Lê os arquivos .pkl salvos
+2. **Interface de Entrada** - Coleta dados do usuário
+3. **Processamento** - Aplica as mesmas transformações do treinamento
+4. **Predição** - Utiliza o modelo para gerar a previsão
+5. **Exibição de Resultados** - Mostra o resultado de forma clara
+
+A aplicação inclui tratamento de erros e validação de dados para garantir funcionamento robusto.
+
+---
+
+## Aprendizados do Projeto
+
+Este projeto proporciona compreensão prática de:
+
+- Processamento e limpeza de dados reais
+- Feature engineering e preparação para modelagem
+- Desenvolvimento e treinamento de modelos de regressão
+- Avaliação de desempenho com múltiplas métricas
+- Deploy de modelos em uma aplicação interativa
+- Tratamento de problemas de compatibilidade em ambiente de produção
+
+---
+
+## Possíveis Melhorias Futuras
+
+O projeto pode ser expandido com:
+
+- Inclusão de mais variáveis de entrada (gênero do cliente, tipo de cliente)
+- Implementação de validação cruzada (cross-validation)
+- Análise de importância das features
+- Otimização de hiperparâmetros
+- Visualização de métricas em tempo real na aplicação
+- Deploy online em plataforma como HuggingFace Spaces
+
+---
+
+## Referências
+
+- Dataset: Supermarket Sales (Kaggle)
+- Bibliotecas: Pandas, Scikit-Learn, Streamlit
+- Tipo de Problema: Regressão Linear
+- Modelos Utilizados: Random Forest, Linear Regression
+
+---
+
+**Desenvolvido por:** Miqueias Teixeira
+**Data:** 2026
