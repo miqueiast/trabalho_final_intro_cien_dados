@@ -22,11 +22,11 @@ def carregar_modelo():
     """
     try:
         # Carregar o modelo treinado
-        with open('modelo_venda.pkl', 'rb') as f:
+        with open('dados/modelo_venda.pkl', 'rb') as f:
             modelo = pickle.load(f)
         
         # Carregar as colunas na ordem correta
-        with open('colunas_modelo.pkl', 'rb') as f:
+        with open('dados/colunas_modelo.pkl', 'rb') as f:
             colunas = pickle.load(f)
         
         # ✅ IMPORTANTE: Garantir que colunas seja uma lista Python pura
